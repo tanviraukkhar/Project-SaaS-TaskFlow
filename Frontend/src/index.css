@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+* {
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+
+body {
+
+  background-color: #f8fafc;
+
+  color: #1e293b;
+
+}
+
+
+
+/* DARK MODE */
+
+.dark body {
+
+  background-color: #020617;
+
+  color: #f8fafc;
+
+}
+
+
+
+/* Cards */
+
+.dark .bg-white {
+
+  background-color: #1e293b !important;
+
+}
+
+
+
+/* Background */
+
+.dark .bg-gray-50 {
+
+  background-color: #0f172a !important;
+
+}
+
+
+.dark .bg-gray-100 {
+
+  background-color: #1e293b !important;
+
+}
+
+
+
+/* Text */
+
+.dark .text-gray-800 {
+
+  color: #f8fafc !important;
+
+}
+
+
+.dark .text-gray-700 {
+
+  color: #e2e8f0 !important;
+
+}
+
+
+.dark .text-gray-600 {
+
+  color: #cbd5e1 !important;
+
+}
+
+
+.dark .text-gray-500 {
+
+  color: #94a3b8 !important;
+
+}
+
+
+
+/* Borders */
+
+.dark .border {
+
+  border-color: #334155 !important;
+
+}
