@@ -13,11 +13,8 @@ import {
 
 function NotificationBell() {
   const [open, setOpen] = useState(false);
-
   const [notifications, setNotifications] = useState([]);
-
   const [unreadCount, setUnreadCount] = useState(0);
-
   const [loading, setLoading] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -32,9 +29,8 @@ function NotificationBell() {
       const data = await getNotifications();
 
       setNotifications(data.notifications || []);
-
     } catch (error) {
-      console.error(error);
+      console.error("Failed to load notifications:", error);
     } finally {
       setLoading(false);
     }
@@ -48,9 +44,8 @@ function NotificationBell() {
       const data = await getUnreadCount();
 
       setUnreadCount(data.unreadCount || 0);
-
     } catch (error) {
-      console.error(error);
+      console.error("Failed to load unread count:", error);
     }
   };
 
@@ -63,7 +58,7 @@ function NotificationBell() {
   }, []);
 
   // ===============================
-  // Close Dropdown
+  // Close Dropdown When Clicking Outside
   // ===============================
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -75,20 +70,15 @@ function NotificationBell() {
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
-    return () =>
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
-    // ===============================
-  // Mark Single Notification as Read
+  // ===============================
+  // Mark Single Notification As Read
   // ===============================
   const handleMarkAsRead = async (id) => {
     try {
@@ -96,14 +86,13 @@ function NotificationBell() {
 
       await loadNotifications();
       await loadUnreadCount();
-
     } catch (error) {
-      console.error(error);
+      console.error("Failed to mark notification as read:", error);
     }
   };
 
   // ===============================
-  // Mark All Notifications as Read
+  // Mark All Notifications As Read
   // ===============================
   const handleMarkAll = async () => {
     try {
@@ -111,9 +100,8 @@ function NotificationBell() {
 
       await loadNotifications();
       await loadUnreadCount();
-
     } catch (error) {
-      console.error(error);
+      console.error("Failed to mark all notifications as read:", error);
     }
   };
 
@@ -126,71 +114,98 @@ function NotificationBell() {
 
       await loadNotifications();
       await loadUnreadCount();
-
     } catch (error) {
-      console.error(error);
+      console.error("Failed to delete notification:", error);
     }
   };
 
   return (
-    <div
-      className="relative"
-      ref={dropdownRef}
-    >
+    <div ref={dropdownRef} className="relative">
+      {/* Notification Button */}
       <button
-        onClick={() => setOpen(!open)}
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
         className="
           relative
-          w-10
-          h-10
-          rounded-full
-          bg-gray-100
-          dark:bg-slate-800
-          hover:bg-gray-200
-          dark:hover:bg-slate-700
-          transition
           flex
+          h-10
+          w-10
           items-center
           justify-center
+          rounded-full
+          bg-gray-100
+          transition
+          hover:bg-gray-200
+          dark:bg-slate-800
+          dark:hover:bg-slate-700
         "
+        aria-label="Notifications"
       >
         <Bell
           size={20}
-          className="text-gray-700 dark:text-white"
+          className="text-gray-700 dark:text-gray-200"
         />
 
+        {/* Unread Badge */}
         {unreadCount > 0 && (
           <span
             className="
               absolute
-              -top-1
               -right-1
-              min-w-[18px]
-              h-[18px]
-              px-1
-              rounded-full
-              bg-red-500
-              text-white
-              text-[10px]
-              font-bold
+              -top-1
               flex
+              h-[18px]
+              min-w-[18px]
               items-center
               justify-center
+              rounded-full
+              bg-red-500
+              px-1
+              text-[10px]
+              font-bold
+              text-white
             "
           >
-            {unreadCount}
+            {unreadCount > 99 ? "99+" : unreadCount}
           </span>
         )}
       </button>
 
+      {/* Notification Dropdown */}
       {open && (
-        <NotificationDropdown
-          loading={loading}
-          notifications={notifications}
-          onRead={handleMarkAsRead}
-          onDelete={handleDelete}
-          onMarkAll={handleMarkAll}
-        />
+        <div
+          className="
+            fixed
+            left-2
+            right-2
+            top-16
+            z-50
+            w-auto
+            overflow-hidden
+            rounded-xl
+            border
+            border-gray-200
+            bg-white
+            shadow-2xl
+            dark:border-slate-700
+            dark:bg-slate-900
+
+            sm:absolute
+            sm:left-auto
+            sm:right-0
+            sm:top-full
+            sm:mt-2
+            sm:w-[380px]
+          "
+        >
+          <NotificationDropdown
+            loading={loading}
+            notifications={notifications}
+            onRead={handleMarkAsRead}
+            onDelete={handleDelete}
+            onMarkAll={handleMarkAll}
+          />
+        </div>
       )}
     </div>
   );
