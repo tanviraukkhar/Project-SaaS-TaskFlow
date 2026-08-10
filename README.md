@@ -11,7 +11,6 @@ A simple and modern **Project Management SaaS** application for managing project
 * Task Assignment
 * Notifications
 * Search & Filter
-* File Management
 * Admin Dashboard
 * Responsive UI
 
@@ -27,9 +26,8 @@ A simple and modern **Project Management SaaS** application for managing project
 
 https://project-saa-s-task-flow.vercel.app/
 
-**Frontend:** Add your deployed frontend link here
 
-**Backend:** Add your deployed backend link here
+
 
 ## 👨‍💻 Author
 
