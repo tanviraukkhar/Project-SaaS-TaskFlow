@@ -12,6 +12,7 @@ A simple and modern **Project Management SaaS** application for managing project
 * Notifications
 * Search & Filter
 * Admin Dashboard
+* Employee Dashboard
 * Responsive UI
 
 ## 🛠️ Technologies
@@ -20,7 +21,7 @@ A simple and modern **Project Management SaaS** application for managing project
 **Backend:** Node.js, Express.js
 **Database:** MongoDB Atlas
 **Authentication:** JWT
-**Deployment:** Render
+**Deployment:** Render,Vercel
 
 ## 🌐 Live Demo link
 
