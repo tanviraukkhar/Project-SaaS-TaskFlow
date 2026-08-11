@@ -2,7 +2,7 @@
 
 A simple and modern **Project Management SaaS** application for managing projects, tasks, users, and team activities.
 
-## 🚀 Features
+##  Features
 
 * User Registration & Login
 * Project Management
@@ -15,7 +15,7 @@ A simple and modern **Project Management SaaS** application for managing project
 * Employee Dashboard
 * Responsive UI
 
-## 🛠️ Technologies
+##  Technologies
 
 **Frontend:** React.js, Vite, Tailwind CSS, Axios
 **Backend:** Node.js, Express.js
@@ -23,7 +23,7 @@ A simple and modern **Project Management SaaS** application for managing project
 **Authentication:** JWT
 **Deployment:** Render,Vercel
 
-## 🌐 Live Demo link
+##  Live Demo link
 
 https://project-saa-s-task-flow.vercel.app/
 
